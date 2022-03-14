@@ -1,4 +1,4 @@
-use std::{fs, env, process, io};
+use std::{fs, env, process, io::{self, Write}};
 
 
 //Commands in brainf
@@ -76,10 +76,14 @@ fn main() {
                 }
             },
             Token::Read => {
+                println!("");
                 let mut read = String::new();
                 io::stdin().read_line(&mut read).expect("Failed To Read");
-                
-                brainf_array[ptr] = read.trim().chars().last().expect("Oops") as u32;
+
+                brainf_array[ptr] = match read.trim().chars().last() {
+                    Some(s) => s as u32,
+                    None => ' ' as u32
+                }
             },
             Token::Write => {
                 print!("{}", char::from_u32(brainf_array[ptr]).unwrap());
