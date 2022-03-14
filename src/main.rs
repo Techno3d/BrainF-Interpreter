@@ -79,7 +79,7 @@ fn main() {
                 let mut read = String::new();
                 io::stdin().read_line(&mut read).expect("Failed To Read");
                 
-                brainf_array[ptr] = read.chars().last().expect("Oops") as u32;
+                brainf_array[ptr] = read.trim().chars().last().expect("Oops") as u32;
             },
             Token::Write => {
                 print!("{}", char::from_u32(brainf_array[ptr]).unwrap());
